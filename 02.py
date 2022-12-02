@@ -3,7 +3,36 @@ from aoc.helpers import aoc
 # https://adventofcode.com/2022/day/2
 
 @aoc(2022, 2)
-def main(input):
+def part2(input):
+    rounds = [
+        x.split() for x in input.strip().split('\n')
+    ]
+    choices = {
+        "A": 1, # rock
+        "B": 2, # paper
+        "C": 3 # scissor
+    }
+    score = 0
+    for round in rounds:
+        match round:
+            case [other, "Y"]:
+                score += choices[other] + 3
+            case [other, "Z"]:
+                your = choices[other] + 1
+                if your > 3:
+                    your = 1
+                score += your + 6
+            case [other, "X"]:
+                your = choices[other] - 1
+                if your < 1:
+                    your = 3
+                score += your
+
+    print("part 2:", score)
+
+
+@aoc(2022, 2)
+def part1(input):
     rounds = [
         x.split() for x in input.strip().split('\n')
     ]
@@ -29,8 +58,8 @@ def main(input):
         elif any((
             (your == "Y" and other == "A"),
             (your == "X" and other == "C"),
-            (your == "Z" and other == " B")
+            (your == "Z" and other == "B")
             )):
             score += 6
     
-    print(score)
+    print("part 1:", score)
