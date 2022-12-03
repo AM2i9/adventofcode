@@ -29,6 +29,8 @@ def fetch_input(year, day):
     """
     Fetch raw input for an AoC challenge from the website
     """
+    if not os.getenv("SESSION"):
+        raise RuntimeError("No session token provided. Cannot fetch input.")
     req = session.get(BASE_URL + f"{year}/day/{day}/input")
     req.raise_for_status()
     return req.text
