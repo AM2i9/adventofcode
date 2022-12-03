@@ -13,7 +13,7 @@ def part2(input):
 
         pri_sum += string.ascii_letters.index(list(group[0] & group[1] & group[2])[0]) + 1 
     
-    print("part 2:", pri_sum)
+    return pri_sum
 
 @aoc(2022, 3)
 def part1(input):
@@ -26,4 +26,4 @@ def part1(input):
         
         pri_sum += string.ascii_letters.index(list(set(compart_1) & set(compart_2))[0]) + 1
     
-    print("part 1:",pri_sum)
+    return pri_sum

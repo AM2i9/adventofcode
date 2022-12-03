@@ -28,7 +28,7 @@ def part2(input):
                     your = 3
                 score += your
 
-    print("part 2:", score)
+    return score
 
 
 @aoc(2022, 2)
@@ -62,4 +62,4 @@ def part1(input):
             )):
             score += 6
     
-    print("part 1:", score)
+    return score

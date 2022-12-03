@@ -1,20 +1,38 @@
 import argparse
+import webbrowser
+from datetime import date
 from pathlib import Path
+
+from aoc.helpers import run_tests
 
 parser = argparse.ArgumentParser(
     prog = "AoC Helper",
     description = "Helper program for Advent of Code",
 )
 
-parser.add_argument("year", type=int)
-parser.add_argument("day", type=int)
+today = date.today()
+
+parser.add_argument("--test", action='store_true')
+parser.add_argument("--submit", action='store_true')
+
+parser.add_argument("--year", type=int, default=today.year)
+parser.add_argument("--day", type=int, default=today.day)
+parser.add_argument("--part", type=int, default=None)
 
 args = parser.parse_args()
 
-path = Path(f"{args.day:>02}.py")
+path = Path(f"solutions/{args.day:>02}.py")
 
-if path.exists():
-    print(f"File '{path}' already exists!")
+if not (args.test or args.submit):
+    if path.exists():
+        print(f"File '{path}' already exists!")
+    else:
+        path.write_text(Path("template.py").read_text().format(year=args.year, day=args.day))
+        print(f"Created file '{path}'")
+    if input("Open website? Y/n").upper() in ("Y", ""):
+        webbrowser.open(f"https://adventofcode.com/{args.year}/day/{args.day}")
 else:
-    path.write_text(Path("template.py").read_text().format(year=args.year, day=args.day))
-    print(f"Created file '{path}'")
+    if not path.exists():
+        print(f"Solution '{path}' does not exist. Is the date correct?")
+    elif (args.test):
+        run_tests(args.year, args.day, args.part)
