@@ -1,6 +1,6 @@
 .env
 __pycache__/
-inputs/
+.aoc/
 
 .pdm.toml
 .venv
