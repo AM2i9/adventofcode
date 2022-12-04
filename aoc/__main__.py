@@ -21,13 +21,14 @@ parser.add_argument("--part", type=int, default=None)
 
 args = parser.parse_args()
 
-path = Path(f"solutions/{args.day:>02}.py")
+path = Path(f"{args.year}/{args.day:>02}.py")
 
 if not (args.test or args.submit):
 
     if path.exists():
         print(f"File '{path}' already exists!")
     else:
+        path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(Path("template.py").read_text().format(year=args.year, day=args.day))
         print(f"Created file '{path}'")
 

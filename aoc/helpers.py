@@ -77,9 +77,7 @@ def submit(year, day, part, answer):
     req = session.post(BASE_URL + f"{year}/day/{day}/answer", data={"level": part, "answer": answer})
     req.raise_for_status()
 
-    msg = re.findall("<article>(.*)<\/article>", req.text)[0].strip("<p>")
-    
-    print(msg)
+    msg = re.findall("<article>(.*)<\/article>", req.text, re.S)[0].strip("<p>")
 
     if "You gave" in msg:
         print("Ratelimited, waiting...")
@@ -89,7 +87,7 @@ def submit(year, day, part, answer):
         for _ in tqdm(range(sec)):
             time.sleep(1)
         print("Ratelimit ended")
-        return
+        return submit(year, day, part, answer)
     elif "That's the" in msg:
         print("Correct!!!")
     else:
@@ -104,13 +102,13 @@ def run_tests(year, day, part=None):
     for i in range(1, 3) if part is None else [part]:
 
         try:
-            sol = importlib.import_module(f'solutions.{day:>02}')
+            sol = importlib.import_module(f'{year}.{day:>02}')
             if sol:
                 res = getattr(sol, f"part{i}")()
                 results.append(res)
                 print(f"Part {i} result:", res)
             else:
-                print(f"Unable to import module 'solutions.{day:>02}'")
+                print(f"Unable to import module '{year}.{day:>02}'")
         except Exception as e:
             print(f"Part {1} failed with exception:")
             traceback.print_exception(e)
