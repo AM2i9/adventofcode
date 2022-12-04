@@ -26,7 +26,7 @@ path = Path(f"{args.year}/{args.day:>02}.py")
 if not (args.test or args.submit):
 
     if path.exists():
-        print(f"File '{path}' already exists!")
+        print(f"🎅 File '{path}' already exists!")
     else:
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(Path("template.py").read_text().format(year=args.year, day=args.day))
@@ -50,6 +50,4 @@ else:
                 print("No results found, canceling submit")
                 exit(0)
             
-            print(f"Submitting the following value for part {args.part}: ", result)
-            if input("Confirm? Y/n").upper() in ("Y", ""):
-                submit(args.year, args.day, args.part, result)
+            submit(args.year, args.day, args.part, result)
