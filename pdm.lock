@@ -125,8 +125,8 @@ requires_python = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, !=3.5.*"
 summary = "HTTP library with thread-safe connection pooling, file post, and more."
 
 [metadata]
-lock_version = "4.0"
-content_hash = "sha256:9897e80917423805fc4e3342afdf38f188fdb3394815282ec9562a3acd9bc788"
+lock_version = "4.1"
+content_hash = "sha256:acacd73b8ab5430a8ea1b11b1d4236d468f04a76bb9ad5020892a34cb3777ea4"
 
 [metadata.files]
 "certifi 2022.9.24" = [
