@@ -12,6 +12,7 @@ dependencies = [
     "dateparser>=1.1.4",
     "tqdm>=4.64.1",
     "colorama>=0.4.6",
+    "numpy>=1.23.5",
 ]
 requires-python = ">=3.10"
 
