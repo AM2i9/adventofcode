@@ -66,15 +66,15 @@ def part2(input):
         for _ in range(0, abs(int(line.split()[1]))):
             match line.split():
                 case ["R", v]:
-                    knots[9]["x"] += 1 
+                    knots[0]["x"] += 1 
                 case ["L", v]:
-                    knots[9]["x"] -= 1
+                    knots[0]["x"] -= 1
                 case ["U", v]:
-                    knots[9]["y"] += 1
+                    knots[0]["y"] += 1
                 case ["D", v]:
-                    knots[9]["y"] -= 1
+                    knots[0]["y"] -= 1
                 
-            for k, knot in enumerate(knots[:9]):
+            for k, knot in enumerate(knots[1:], start=1):
                 # Did this stuff because I originally was going to just have
                 # the head move by the value instantly instead of incrementing
                 # by 1 repeatedly, but found incrementing easier because
@@ -92,6 +92,15 @@ def part2(input):
                         else:
                             knot["x"] += dx + 1
                         knot["y"] += dy
+                    elif abs(dx) == abs(dy):
+                        if dx > 0:
+                            knot["x"] += dx - 1
+                        else:
+                            knot["x"] += dx + 1 # could have been done better :( some math would have helped
+                        if dy > 0:
+                            knot["y"] += dy - 1
+                        else:
+                            knot["y"] += dy + 1
                     else:
                         if dy > 0:
                             knot["y"] += dy - 1
@@ -99,7 +108,21 @@ def part2(input):
                             knot["y"] += dy + 1
                         knot["x"] += dx
 
-            points.add((knots[8]["x"], knots[8]["y"]))
+            points.add((knots[9]["x"], knots[9]["y"]))
+
+    # for y in range(15, -6, -1):
+    #     for x in range(-11, 15):
+
+    #         if (x, y) in points:
+    #             print("#", end="")
+    #         elif (x, y) == (0, 0):
+    #             print("s", end="")
+    #         else:
+    #             print(".", end="")
+    #     print()
+    # print()
+
+    
 
     return len(points)
     
