@@ -2,6 +2,7 @@ from aoc.helpers import aoc
 
 # https://adventofcode.com/2022/day/4
 
+
 @aoc(2022, 4)
 def part1(input):
     pairs = [p.split(",") for p in input.splitlines()]
@@ -19,8 +20,9 @@ def part1(input):
 
         if len((set(a_r) & set(b_r))) == len(a_r):
             count += 1
-    
+
     return count
+
 
 @aoc(2022, 4)
 def part2(input):
@@ -39,5 +41,5 @@ def part2(input):
 
         if len((set(a_r) & set(b_r))) > 0:
             count += 1
-    
+
     return count
