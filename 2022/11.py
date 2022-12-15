@@ -7,7 +7,7 @@ from pprint import pprint
 
 @aoc(2022, 11)
 def part1(input):
-    
+
     monkeys = {}
 
     for raw_m in input.split("\n\n"):
@@ -18,9 +18,9 @@ def part1(input):
             "div": int(lines[3].split("by ")[1]),
             True: int(lines[4].split("monkey ")[1]),
             False: int(lines[5].split("monkey ")[1]),
-            "count": 0
+            "count": 0,
         }
-    
+
     for round in range(20):
         for _, monkey in monkeys.items():
             monkey["count"] += len(monkey["items"])
@@ -29,13 +29,14 @@ def part1(input):
                 new = eval(monkey["operation"]) // 3
                 monkeys[monkey[new % monkey["div"] == 0]]["items"].append(new)
 
-    businesses = [monkey["count"] for _,monkey in monkeys.items()]
+    businesses = [monkey["count"] for _, monkey in monkeys.items()]
     businesses.sort()
     return businesses[-1] * businesses[-2]
 
+
 @aoc(2022, 11)
 def part2(input):
-    
+
     monkeys = {}
     mod = 1
 
@@ -48,10 +49,9 @@ def part2(input):
             "div": div,
             True: int(lines[4].split("monkey ")[1]),
             False: int(lines[5].split("monkey ")[1]),
-            "count": 0
+            "count": 0,
         }
         mod *= div
-    
 
     for round in range(10000):
         for _, monkey in monkeys.items():
@@ -61,6 +61,6 @@ def part2(input):
                 new = eval(monkey["operation"]) % mod
                 monkeys[monkey[new % monkey["div"] == 0]]["items"].append(new)
 
-    businesses = [monkey["count"] for _,monkey in monkeys.items()]
+    businesses = [monkey["count"] for _, monkey in monkeys.items()]
     businesses.sort()
     return businesses[-1] * businesses[-2]
