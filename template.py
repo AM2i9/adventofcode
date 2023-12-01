@@ -4,10 +4,10 @@ from aoc.helpers import aoc
 
 
 @aoc({year}, {day})
-def part1(input):
+def part1(input: str):
     ...
 
 
 @aoc({year}, {day})
-def part2(input):
+def part2(input: str):
     ...
