@@ -5,7 +5,7 @@ from aoc.helpers import aoc
 
 @aoc(2023, 2)
 def part1(input: str):
-    
+
     games = input.strip().splitlines()
 
     sum = 0
@@ -26,10 +26,11 @@ def part1(input: str):
                 or stuff.get("blue", 0) > 14
             ):
                 break
-        else: # never did I ever
+        else:  # never did I ever
             sum += id
-    
+
     return sum
+
 
 @aoc(2023, 2)
 def part2(input: str):
@@ -60,5 +61,5 @@ def part2(input: str):
                 blue = stuff["blue"]
 
         sum += red * blue * green
-    
+
     return sum
