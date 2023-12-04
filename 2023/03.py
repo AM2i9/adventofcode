@@ -55,7 +55,7 @@ def part2(input: str):
     lines = input.strip()[::-1].splitlines()
 
     lines[-1] += "."  # gotta have this or it won't work for reasons
-                      # not pround of it
+    # not pround of it
 
     cur_num = 0
     num_cnt = 0
