@@ -58,7 +58,7 @@ def part2(input: str):
 
     i = 0
     for id, card_score in card_counts:
-        card_counts.extend( # baaaaaad I'm being devious this year
+        card_counts.extend(  # baaaaaad I'm being devious this year
             card_counts[
                 id + 1 : m if (m := id + card_score + 1) < len(cards) else len(cards)
             ]
