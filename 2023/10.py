@@ -1,4 +1,4 @@
-# import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 from aoc.helpers import aoc
 
 # https://adventofcode.com/2023/day/10
@@ -101,17 +101,15 @@ def part2(input: str):
     )
 
     tile_coords = find_loop(rows, start_x, start_y)
+    tile_coords.append((start_x, start_y)) # apparently it's not in there
 
-    step_count = len(tile_coords)
+    input = input.replace("F", "|")
+    input = input.replace("J", "-")
+    input = input.replace("L", "-")
+    input = input.replace("7", "|")
+    input = input.replace("S", "|") # this might change depending on the input, but it works on my computer :)
 
-    # input = input.replace("F", "|")
-    # input = input.replace("J", "|")
-    # input = input.replace("L", "|")
-    # input = input.replace("7", "|")
-
-    # rows = input.strip().splitlines()
-
-    scanned = ""
+    rows = input.strip().splitlines()
 
     inside_chars = []
 
@@ -119,23 +117,10 @@ def part2(input: str):
         inside = False
         for x, char in enumerate(row.strip()):
 
-            if char in "FLJ7|" and ((x, y) in tile_coords):
+            if char in "|" and ((x, y) in tile_coords):
                 inside = not inside
-
-                scanned += f"\033[{32 if inside else 31}m{char}\033[0m"
-
             elif inside and ((x, y) not in tile_coords):
                 inside_chars.append((x, y))
-
-                scanned += f"\033[36m{char}\033[0m"
-
-            else:
-                scanned += char
-        scanned += "\n"
-    print(scanned)
-
-    # plt.scatter(start_x, start_y, color="RED")
-    # plt.scatter(*zip(*tile_coords), color="BLUE")
-    # plt.scatter(*zip(*inside_chars), color="GREEN")
-
-    # plt.show()
+    
+    return len(inside_chars)
+    
